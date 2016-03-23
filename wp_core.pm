@@ -129,6 +129,7 @@ sub plugin_check {
 			if ( $_ eq "sabre" ) { next; }
 			if ( $_ eq "akismet" ) { next; }
 			if (! -d '/tmp/wordpress_checker/plugins') { system("mkdir /tmp/wordpress_checker/plugins"); }
+			if ( -d "/tmp/wordpress_checker/plugins/$_" ) { system("rm -rf /tmp/wordpress_checker/plugins/$_"); }
 			system("wget -q https://downloads.wordpress.org/plugin/$_.zip -O /tmp/wordpress_checker/plugins/$_.zip");
 			system("unzip -q /tmp/wordpress_checker/plugins/$_ -d /tmp/wordpress_checker/plugins/");
 			my $files_check = `find $plugin_path/wp-content/plugins/$_/* -type f`;
